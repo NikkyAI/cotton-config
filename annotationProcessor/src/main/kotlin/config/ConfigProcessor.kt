@@ -1,10 +1,8 @@
 package config
 
 import blue.endless.jankson.Comment
-import com.google.auto.service.AutoService
 import java.io.File
 import javax.annotation.processing.AbstractProcessor
-import javax.annotation.processing.Processor
 import javax.annotation.processing.RoundEnvironment
 import javax.annotation.processing.SupportedAnnotationTypes
 import javax.annotation.processing.SupportedOptions
@@ -21,7 +19,7 @@ import java.io.PrintStream
     "io.github.cottonmc.cotton.config.annotations.ValidRangeInt",
     "io.github.cottonmc.cotton.config.annotations.ValidValuesString"
 )
-@AutoService(Processor::class) // For registering the service
+//@AutoService(Processor::class) // For registering the service
 @SupportedSourceVersion(SourceVersion.RELEASE_8) // to support Java 8
 @SupportedOptions(ConfigProcessor.KAPT_KOTLIN_GENERATED_OPTION_NAME)
 class ConfigProcessor : AbstractProcessor() {
@@ -35,10 +33,10 @@ class ConfigProcessor : AbstractProcessor() {
         // Assign o to output stream
         System.setOut(o)
 
-        val generatedSourcesRoot: String = processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME] ?: kotlin.run {
-            println("ERROR: Can't find the target directory for generated Kotlin files.")
-            return false
-        }
+//        val generatedSourcesRoot: String = processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME] ?: kotlin.run {
+//            println("ERROR: Can't find the target directory for generated Kotlin files.")
+//            return false
+//        }
 
         println("starting log ${System.currentTimeMillis()}")
 
@@ -55,8 +53,16 @@ class ConfigProcessor : AbstractProcessor() {
             println("element: $it")
         }
 
-        val file = File(generatedSourcesRoot).apply { mkdirs() }
-        val testFile = file.resolve("test.json")
+        val resources = File("build").resolve("resources").apply {
+            mkdirs()
+        }
+        if(!resources.exists()) {
+            println("ERROR")
+        }
+        val testFile = resources.resolve("test.json").apply {
+            createNewFile()
+        }
+
         testFile.writeText("""
             {
                 "version": 1

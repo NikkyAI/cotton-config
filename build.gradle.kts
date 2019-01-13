@@ -46,6 +46,12 @@ dependencies {
     testImplementation(group = "org.junit.jupiter", name = "junit-jupiter-engine", version = Versions.junit)
 }
 
+sourceSets {
+    main {
+        resources.srcDir("build/generated/source/cotton-config")
+    }
+}
+
 configurations {
 //    annotationProcessor.configure {
 //        extendsFrom(configurations.compileOnly.get())
