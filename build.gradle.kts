@@ -35,7 +35,7 @@ dependencies {
 
     implementation(project("annotations"))
 
-    compileOnly(project("annotationProcessor"))
+    implementation(project("annotationProcessor"))
     kapt(project("annotationProcessor"))
 //    annotationProcessor(project("annotationProcessor"))
 

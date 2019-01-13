@@ -14,8 +14,12 @@ import javax.lang.model.element.TypeElement
 import java.io.PrintStream
 
 @SupportedAnnotationTypes(
+    "config.ConfigurationAnnotation",
     "blue.endless.jankson.Comment",
-    "io.github.cottonmc.cotton.config.annotations.ConfigFile"
+    "io.github.cottonmc.cotton.config.annotations.ConfigFile",
+    "io.github.cottonmc.cotton.config.annotations.ValidRangeFloat",
+    "io.github.cottonmc.cotton.config.annotations.ValidRangeInt",
+    "io.github.cottonmc.cotton.config.annotations.ValidValuesString"
 )
 @AutoService(Processor::class) // For registering the service
 @SupportedSourceVersion(SourceVersion.RELEASE_8) // to support Java 8
