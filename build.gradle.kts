@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.jetbrains.kotlin.gradle.internal.KaptGenerateStubsTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -48,7 +49,21 @@ dependencies {
 
 sourceSets {
     main {
-        resources.srcDir("build/generated/source/cotton-config")
+        resources.srcDir("build/generated/resources")
+    }
+}
+
+kapt {
+//    this.arguments {
+//        arg("test", "value", "value2")
+//    }
+    correctErrorTypes = true
+    strictMode = false
+}
+
+tasks.getByName("compileKotlin") {
+    doFirst {
+        File("build/generated/source/kaptKotlin/main/resources").renameTo(File("build/generated/resources"))
     }
 }
 
@@ -82,23 +97,3 @@ tasks.getByName<ShadowJar>("shadowJar") {
         "META-INF/*.RSA"
     )
 }
-
-// or
-
-//val application = extensions.getByType<JavaApplication>()
-//
-//tasks.getByName<Jar>("jar") {
-//    manifest {
-//        attributes(
-////             Class-Path seems to not be required when everything is shaded in anyways
-////            "Class-Path" to configurations.compileClasspath.get().resolve().joinToString(" ") { it.name },
-//            "Main-Class" to Constants.mainClassName
-//        )
-//    }
-//    from(configurations.compileClasspath.get().resolve().map { entry -> zipTree(entry) }) {
-//        exclude("META-INF/MANIFEST.MF")
-//        exclude("META-INF/*.SF")
-//        exclude("META-INF/*.DSA")
-//        exclude("META-INF/*.RSA")
-//    }
-//}
