@@ -1,0 +1,6 @@
+.idea/
+.gradle/
+annotationProcessor.log.txt
+run/
+build/
+out/
