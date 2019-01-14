@@ -9,5 +9,7 @@ object Main : KLogging() {
     fun main(vararg args: String) {
         val config = ConfigManager.loadConfig(CottonConfig::class.java)
         val config2 = ConfigManager.loadConfig(KottonKonfig::class.java)
+
+        println(config2!!.nested.data)
     }
 }

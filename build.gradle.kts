@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version Versions.kotlin
-    id("org.jetbrains.kotlin.kapt") version "1.3.11"
+    id("org.jetbrains.kotlin.kapt") version Versions.kotlin
     id("com.github.johnrengelman.shadow") version Versions.shadowJar
     application
 }
@@ -31,14 +31,14 @@ dependencies {
     implementation(group = "blue.endless", name = "jankson", version = "1.0.0-9")
 
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
-
-    implementation(group = "org.apache.logging.log4j", name = "log4j-core", version = "2.8.1")
-
+    
     implementation(project("annotations"))
 
     implementation(project("annotationProcessor"))
     kapt(project("annotationProcessor"))
 //    annotationProcessor(project("annotationProcessor"))
+
+    implementation(group = "org.apache.logging.log4j", name = "log4j-core", version = "2.8.1")
 
     implementation(group = "io.github.microutils", name = "kotlin-logging", version = Versions.kotlinLogging)
     implementation(group = "ch.qos.logback", name = "logback-classic", version = Versions.logbackClassic)

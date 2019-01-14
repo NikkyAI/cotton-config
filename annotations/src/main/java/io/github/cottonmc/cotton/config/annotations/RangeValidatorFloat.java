@@ -2,10 +2,10 @@ package io.github.cottonmc.cotton.config.annotations;
 
 import java.lang.annotation.*;
 
-@Target(value = ElementType.TYPE)
+@Target(value = ElementType.FIELD)
 @Retention(value = RetentionPolicy.CLASS)
-@Inherited
-public @interface ValidRangeFloat {
+public @interface RangeValidatorFloat {
     float min() default Float.MIN_VALUE;
     float max() default Float.MAX_VALUE;
+    int[] typeIndex() default {0};
 }

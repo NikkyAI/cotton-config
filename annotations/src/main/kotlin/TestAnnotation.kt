@@ -1,1 +1,0 @@
-annotation class TestAnnotation(val value: String)

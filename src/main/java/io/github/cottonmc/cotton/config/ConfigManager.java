@@ -9,6 +9,8 @@ import config.FabricLoader;
 import config.Main;
 import io.github.cottonmc.cotton.config.annotations.ConfigFile;
 import mu.KLogger;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,6 +25,7 @@ public class ConfigManager {
      * @param clazz The class of the POJO that will store all our properties
      * @return A new config Object containing all our options from the config file
      */
+    @Nullable
     public static <T> T loadConfig(Class<T> clazz) {
         String configName;
         if(clazz.isAnnotationPresent(ConfigFile.class)){
@@ -39,6 +42,7 @@ public class ConfigManager {
      * @param configName The name of the config file
      * @return A new config Object containing all our options from the config file
      */
+    @Nullable
     public static <T> T loadConfig(Class<T> clazz, String configName){
         KLogger logger = Main.INSTANCE.getLogger();
         try {

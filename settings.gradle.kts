@@ -8,4 +8,5 @@ rootProject.name = "cotton-config"
 
 include("annotationProcessor")
 include("annotations")
+include("loader")
 
